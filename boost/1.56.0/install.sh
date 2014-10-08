@@ -7,3 +7,7 @@ cd src
 ./bootstrap.sh --with-libraries=filesystem,program_options,system,atomic,log,regex,thread,timer,signals,iostreams --prefix=`realpath ..`/bin
 ./b2 -j4
 ./b2 install
+cd ..
+mkdir -p bin/bin
+cd bin/bin
+ln -s ../../src/bjam
