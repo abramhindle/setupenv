@@ -14,4 +14,4 @@ cd ../..
 mkdir bin
 cd bin
 ln -s ../src/build/lib .
-ln -s ../src/build/include .
+ln -s ../src/include .
