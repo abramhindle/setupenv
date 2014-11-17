@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
+
+WHAT=word2vec
+
 svn checkout http://word2vec.googlecode.com/svn/trunk/
-REVISION=r`svn info http://word2vec.googlecode.com/svn/trunk/ |grep Revision: |cut -c11-`
-mv trunk src
-mkdir ${REVISION}
-mv src ${REVISION}
-cd ${REVISION}/src
+VERSION=r`svn info http://word2vec.googlecode.com/svn/trunk/ |grep Revision: |cut -c11-`
+TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+
+mv trunk ${VERSION}
+cd ${VERSION}
 make
-cd ../..
-cp setupenv.sh ${REVISION}
+
+SOURCEDIR=`realpath ${VERSION}`
+
+mkdir -p ${TARGETDIR}/bin
+
+cp -vf {compute-accuracy,distance,word-analogy,word2phrase,word2vec} ${TARGETDIR}/bin
+cd ..
