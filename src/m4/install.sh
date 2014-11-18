@@ -16,3 +16,5 @@ cd ${VERSION}/src
 make
 make install
 cd ../..
+
+rm -vf ${TARGETDIR}/share/info/dir
