@@ -1,0 +1,86 @@
+#!/usr/bin/python
+
+# $Id: prettyspace.py,v 1.3 2005/02/15 16:27:19 hasan Exp $
+
+import sys, string
+
+just  = string.ljust
+delim = " "
+ignore = ""
+ignoreflag = 0
+firstcut = -1
+lastcut = -1
+colwidth = {}
+if len(sys.argv) > 1:
+    i = 1
+    while i < len(sys.argv):
+        if sys.argv[i] == '-h' or sys.argv[i] == '--help':
+            print """USAGE: %s [-lrc]
+            \rReads from <stdin> and aligns the tokens column-wise.
+            \rOPTIONS:
+            -l    left   align (default)
+            -r    right  align
+            -c    center align
+            -d s  use s as delimiter (default: space)
+            -i c  ignore lines starting with c
+            -1 n  max column width for first column
+            -2 n  max column width for second column
+            -3 n  ...
+            """ % sys.argv[0]
+#            -b n  limits the line width to n (chars of first token(s) are dropped)
+#            -e n  limits the line width to n (chars of last token(s) are dropped)
+            sys.exit(1)
+        elif sys.argv[i] == '-r':
+            just = string.rjust
+        elif sys.argv[i] == '-c':
+            just = string.center
+        elif sys.argv[i] == '-l':
+            just = string.ljust
+        elif sys.argv[i] == '-d':
+            delim = sys.argv[i+1]
+            i += 1
+        elif sys.argv[i] == '-i':
+            ignoreflag = 1
+            ignore = sys.argv[i+1]
+            i += 1
+        elif sys.argv[i] == '-b':
+            firstcut = sys.argv[i+1]
+            i += 1
+        elif sys.argv[i] == '-e':
+            lastcut = sys.argv[i+1]
+            i += 1
+        elif sys.argv[i][0] == '-' and sys.argv[i][1] in "123456789":
+            col = int(sys.argv[i][1])
+            colwidth[col] = int(sys.argv[i+1])
+            i += 1
+        i += 1
+        
+slines = []
+for line in sys.stdin:
+    words = line.split()
+    for k in colwidth.keys():
+        if len(words[k-1]) > colwidth[k]:
+            words[k-1] = words[k-1][0:colwidth[k]]+"..."
+    slines.append(words)
+maxcol = max(map(len, slines))
+maxlen = [ ]
+
+for col in xrange(maxcol):
+    max = 0
+    for line in slines:
+        if col < len(line) and max < len(line[col]) and (not ignoreflag or (string.find(string.join(line), ignore) != 0)):
+            max = len(line[col])
+    maxlen.append(max)
+
+for line in slines:
+    if ignoreflag and string.find(string.join(line), ignore) == 0:
+        print string.join(line)
+        continue
+    i = 0
+    #for i, word in enumerate(line):
+    for word in line:
+        sys.stdout.write(just(word, maxlen[i]))
+        sys.stdout.write(delim)
+        i += 1
+    sys.stdout.write('\n')
+    

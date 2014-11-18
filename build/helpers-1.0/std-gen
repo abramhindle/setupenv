@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+import random, sys, os, datetime, calendar, argparse
+
+parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+parser.add_argument('year', metavar='YEAR', type=int, help='year to generate')
+parser.add_argument('month', metavar='MONTH', type=int, help='month to generate')
+parser.add_argument('--hours', help='hours per week', type=int, default=8)
+parser.add_argument('--hours_min', metavar='MINHOURS', help='work at least MINHOURS in a row', type=float, default=0.75)
+parser.add_argument('--wakeup', metavar='WAKEUP', help='work earliest at WAKEUP hours after midnight', type=float, default=9.0)
+parser.add_argument('--sleep', metavar='SLEEP', help='work until latest SLEEP hours after midnight', type=float, default=18.0)
+parser.add_argument('--parts_min', metavar='MINPARTS', help='go to work at minimum MINPARTS times per week', type=int, default=2)
+parser.add_argument('--parts_max', metavar='MAXPARTS', help='go to work at maximum MAXPARTS times per week', type=int, default=4)
+parser.add_argument('--lunch_start_min', metavar='LUNCHSTARTMIN', help='go to lunch at earliest at LUNCHSTARTMIN', type=float, default=11.5)
+parser.add_argument('--lunch_start_max', metavar='LUNCHSTARTMAX', help='go to lunch at earliest at LUNCHSTARTMAX', type=float, default=12.5)
+parser.add_argument('--lunch_duration_min', metavar='LUNCHDURATIONMIN', help='go to lunch at earliest at LUNCHDURATIONMIN', type=float, default=0.5)
+parser.add_argument('--lunch_duration_max', metavar='LUNCHDURATIONMAX', help='go to lunch at earliest at LUNCHDURATIONMAX', type=float, default=1.5)
+
+args = parser.parse_args()
+
+# load data
+holiday_fn_ = "/usr/local/std/officialHolidays." + str(args.year)
+days_in_month_ = calendar.monthrange(args.year, args.month)[1]
+
+def parse_time(minuten):
+  return "%02i:%02i" %(get_hours(minuten),get_minutes(minuten))
+
+def get_hours(minuten):
+  return (minuten-minuten%60)/60
+
+def get_minutes(minuten):
+  hours = get_hours(minuten)
+  return minuten-(hours*60)
+
+def day_to_date(monday,day):
+    tage = ['montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag']
+    for i in range(len(tage)):
+        if day == tage[i]:
+            return monday+i
+    print "error, tag nicht gefunden"
+
+def get_holidays(filename,month):
+  holidays = {}
+  if( os.path.exists(filename)):
+    datei = open(filename, 'r')
+    # lese daten ein und speichere
+    for line in datei:
+      data = line.split()
+      # pruefe auf richtigen monat
+      if((int)(data[1]) == month):
+        holidays[int(data[0])] = True
+    datei.close()
+  else:
+    sys.exit("error, datei mit offiziellen feiertagen nicht gefunden (sollte: %s )" % filename)
+
+  return holidays
+
+def make_week(firstmonday, holidays):
+
+  # minutes we have to work
+  minutes_left = int(args.hours * 60)
+  minutes_min = int(args.hours_min * 60)
+
+  # Aufteilung
+  tageBasic = ['montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag']
+  days = []
+
+  # Entferne Feiertage in der Woche
+  num_holidays = 0
+  for i in range(5):
+    if(holidays.has_key(day_to_date(firstmonday,tageBasic[i]))):
+      num_holidays += 1
+    else:
+      days.append(tageBasic[i])
+
+  # min max anpassen
+  parts_max = args.parts_max - num_holidays
+  parts_max -= num_holidays
+
+  if(parts_max < 2):
+    # parts_max kann nicht kleiner 1 werden
+    # nur weihnachten schafft es 3 feiertage in eine
+    # arbeitswoche ohne WE zu packen
+    parts_min = 1
+
+  # Mittagessenspausen
+  parts = random.randint(args.parts_min,args.parts_max)
+  minutes_left -= minutes_min*parts
+
+  work_times = []
+  times = [0]*parts
+
+  # distribute minutes
+  for m in range(minutes_left):
+    times[random.randint(0,parts-1)] += 1
+
+  day_no = 0
+
+  for cur_part in range(parts):
+    # Wochentag ausdenken
+    day_no = random.randint( day_no, len(days)-1-parts+cur_part )
+    day = days[day_no]
+    days = days[:day_no] + days[day_no+1:]
+
+    # Dauer ausdenken
+    work_duration = times[cur_part]
+    minutes_left -= work_duration
+    work_duration += minutes_min
+
+    # Anfangszeit
+    work_start = random.randint(int(60*args.wakeup),int(60*args.sleep)-work_duration)
+
+    # Mittagspause
+    lunch_start = random.randint(int(60*args.lunch_start_min),int(60*args.lunch_start_max))
+    if (work_start + work_duration < lunch_start):
+      lunch_duration = random.randint(int(60*args.lunch_duration_min),int(60*args.lunch_duration_max))
+      work_times.append((day, work_start, lunch_start))   # Arbeitszeit vor dem Mittagessen
+      work_times.append((day, lunch_start+lunch_duration, lunch_start+lunch_duration+lunch_start-work_start)) # und danach
+    else:
+      work_times.append((day, work_start, work_start+work_duration))
+
+  return work_times
+
+
+holidays = get_holidays(holiday_fn_, args.month)
+
+for week in calendar.monthcalendar(args.year, args.month):
+  if(week[0] != 0):
+    arbeitszeiten = make_week( week[0] , holidays )
+    for tripel in arbeitszeiten:
+      if day_to_date(week[0],tripel[0]) <= days_in_month_:
+        print "%02i %02i %02i %02i I" %(day_to_date(week[0],tripel[0]),args.month,get_hours(tripel[1]),get_minutes(tripel[1]))
+        print "%02i %02i %02i %02i O" %(day_to_date(week[0],tripel[0]),args.month,get_hours(tripel[2]),get_minutes(tripel[2]))

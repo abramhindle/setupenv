@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 
+WHAT=thrift
 VERSION=0.9.2
+TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget http://ftp.fau.de/apache/thrift/${VERSION}/thrift-${VERSION}.tar.gz
-tar xvfz thrift-${VERSION}.tar.gz
-mv thrift-${VERSION} src
-mkdir ${VERSION}
-mv src ${VERSION}
-cd ${VERSION}/src
+if [ -d "${TARGETDIR}" ]; then
+  echo >&2 "${TARGETDIR} already exists"
+  exit 1
+fi
+
+wget http://ftp.fau.de/apache/thrift/${VERSION}/${WHAT}-${VERSION}.tar.gz
+tar xvfz ${WHAT}-${VERSION}.tar.gz
+mv ${WHAT}-${VERSION} ${VERSION}
+cd ${VERSION}
 
 #CXXFLAGS="-std=c++11 -Wreserved-user-defined-literal"
-export PY_PREFIX=`realpath ..`/bin
+export PY_PREFIX=${TARGETDIR}
 ./configure \
-  --prefix=`realpath ..`/bin \
+  --prefix=${TARGETDIR} \
   --disable-tests \
   --without-qt4 \
   --without-php \
@@ -30,7 +35,6 @@ export PY_PREFIX=`realpath ..`/bin
   --without-go \
   --without-d
 
-make -j4
+make
 make install
-cd ../..
-cp setupenv.sh ${VERSION}
+cd ..

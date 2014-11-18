@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-WHAT=bison
-VERSION=3.0
+WHAT=gtest
+VERSION=1.7.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,15 +9,11 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.gz
-
-tar xvfz bison-${VERSION}.tar.gz
-mv bison-${VERSION} ${VERSION}
+wget http://googletest.googlecode.com/files/gtest-${VERSION}.zip
+unzip gtest-${VERSION}.zip
+mv gtest-${VERSION} ${VERSION}
 cd ${VERSION}
-
 ./configure --prefix=${TARGETDIR}
-make -j4
+make
 make install
-
 cd ..
-rm ${TARGETDIR}/share/info/dir
