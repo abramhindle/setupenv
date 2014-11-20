@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+  echo >&2 "missing subdir"
+else
+  SUBDIR=$1
+  BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"/${SUBDIR}
+
+  export PATH=${BASEDIR}/bin:${PATH}
+  export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+  export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
+  export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
+  export INFODIR=${BASEDIR}/share/info:${INFODIR}
+fi

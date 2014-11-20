@@ -9,9 +9,11 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://downloads.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.gz
-tar xvfz boost_1_57_0.tar.gz
-mv boost_1_57_0 ${VERSION}
+mkdir -p ${TARGETDIR}
+
+#wget http://downloads.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.gz
+#tar xvfz boost_1_57_0.tar.gz
+#mv boost_1_57_0 ${VERSION}
 cd ${VERSION}
 
 ./bootstrap.sh --with-libraries=filesystem,program_options,system,atomic,log,regex,thread,timer,signals,iostreams,chrono --prefix=${TARGETDIR}

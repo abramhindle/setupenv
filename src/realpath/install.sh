@@ -2,10 +2,10 @@
 
 WHAT=realpath
 VERSION=1.0
-TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+TARGETDIR=${PWD}/../../build/${WHAT}-${VERSION}
 
 cd ${VERSION}
 make
-mkdir -p ${TARGETDIR}
-cp realpath ${TARGETDIR}
+mkdir -p ${TARGETDIR}/bin
+cp realpath ${TARGETDIR}/bin
 cd ..

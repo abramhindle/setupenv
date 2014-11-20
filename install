@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#sudo apt-get install libbz2-dev
+
+#cd src/realpath ; ./install.sh ; cd ../..
+#cd src/cmake ; ./install.sh ; cd ../..
+#cd src/m4 ; ./install.sh ; cd ../..
+#cd src/bison ; ./install.sh ; cd ../..
+#cd src/gawk ; ./install.sh ; cd ../..
+#cd src/boost ; ./install.sh ; cd ../..
+#cd src/thrift ; ./install.sh ; cd ../..
+#cd src/stxxl ; ./install.sh ; cd ../..
+#cd src/openfst ; ./install.sh ; cd ../..
+
