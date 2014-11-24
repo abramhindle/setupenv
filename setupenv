@@ -7,6 +7,7 @@ else
   BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"/${SUBDIR}
 
   export PATH=${BASEDIR}/bin:${PATH}
+  export CPATH=${BASEDIR}/include:${CPATH}
   export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
   export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
   export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
