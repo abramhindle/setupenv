@@ -2,8 +2,10 @@
 
 WHAT=libeigen
 VERSION=3.2.2
-SUBDIR=eigen-eigen-1306d75b4a21
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+
+# THIS NEEDS TO BE SET PROPERLY, DEPENDING ON THE VERSION
+SUBDIR=eigen-eigen-1306d75b4a21
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"

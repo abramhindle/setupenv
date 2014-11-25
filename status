@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# loop over all source directories
+for f in src/*; do
+  f=`basename ${f}`
+  INSTALLDIR="build/$f-*"
+
+  # check if there is build directory for that
+  if stat ${INSTALLDIR} 2>/dev/null 1>/dev/null; then
+    for ff in ${INSTALLDIR}; do
+      ff=`basename ${ff}`
+      echo "0 $f ... $ff"
+    done
+  else
+    echo "1 $f ... MISSING"
+  fi
+done | sort -k1,1g -k2,2 | awk '{print substr($0,3,length($0))}' | column -t

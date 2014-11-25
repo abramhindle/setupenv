@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WHAT=stow
+WHAT=gflags
 VERSION=`date +%Y-%m-%d`
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
@@ -9,16 +9,12 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-git clone git://git.savannah.gnu.org/stow.git
-mv stow ${VERSION}
-cd ${VERSION}
+git clone https://code.google.com/p/gflags/
+mv gflags ${VERSION}
 
-autoreconf
-./configure --prefix=${TARGETDIR}
+mkdir ${VERSION}-build
 
-touch texi2html
-chmod oug+x texi2html
-
-make
+cd ${VERSION}-build
+cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
 make install
 cd ..
