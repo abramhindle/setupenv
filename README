@@ -2,3 +2,9 @@ library of software tools
 
 current need the following packages:
 sudo apt-get install libssl-dev libbz2-dev libz-dev libc6-i386
+
+not working on mac:
+* sparsehash
+
+ideas to solve:
+* add latest gcc and compile everything with that gcc
