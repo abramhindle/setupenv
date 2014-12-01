@@ -4,7 +4,7 @@ WHAT=libevent
 VERSION=2.0.21-stable
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget https://github.com/downloads/libevent/libevent/libevent-${VERSION}.tar.gz
+wget http://softlayer-ams.dl.sourceforge.net/project/levent/libevent/libevent-2.0/libevent-${VERSION}.tar.gz
 tar xvfz libevent-${VERSION}.tar.gz
 mv libevent-${VERSION} ${VERSION}
 

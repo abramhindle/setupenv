@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-WHAT=sparsehash
-VERSION=2.0.2
+WHAT=libcurl
+VERSION=7.39.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,12 +9,11 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-mkdir -p ${TARGETDIR}
+wget http://curl.haxx.se/download/curl-${VERSION}.tar.gz
 
-wget https://sparsehash.googlecode.com/files/${WHAT}-${VERSION}.tar.gz
-tar xvfz ${WHAT}-${VERSION}.tar.gz
-mv ${WHAT}-${VERSION} ${VERSION}
+tar xvfz curl-${VERSION}.tar.gz
 
+mv curl-${VERSION} ${VERSION}
 cd ${VERSION}
 ./configure --prefix=${TARGETDIR}
 make

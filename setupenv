@@ -6,10 +6,29 @@ else
   SUBDIR=$1
   BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"/build/${SUBDIR}
 
-  export PATH=${BASEDIR}/bin:${PATH}
-  export CPATH=${BASEDIR}/include:${CPATH}
-  export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
-  export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
-  export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
-  export INFODIR=${BASEDIR}/share/info:${INFODIR}
+  if [ -d ${BASEDIR}/bin ]; then
+    export PATH=${BASEDIR}/bin:${PATH}
+  fi
+
+  if [ -d ${BASEDIR}/include ]; then
+    export CPATH=${BASEDIR}/include:${CPATH}
+    export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
+    export CFLAGS="${CFLAGS} -I${BASEDIR}/include"
+  fi
+
+  if [ -d ${BASEDIR}/lib ]; then
+    export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
+    export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+    export LIBRARY_PATH=${BASEDIR}/lib:${LIBRARY_PATH}
+  fi
+
+  if [ -d ${BASEDIR}/lib ]; then
+    export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
+    export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+    export LIBRARY_PATH=${BASEDIR}/lib:${LIBRARY_PATH}
+  fi
+
+  if [ -d ${BASEDIR}/share/info ]; then
+    export INFODIR=${BASEDIR}/share/info:${INFODIR}
+  fi
 fi

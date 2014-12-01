@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=git
-VERSION=2.1.3
+VERSION=2.2.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -17,3 +17,4 @@ mv git-${VERSION} ${VERSION}
 cd ${VERSION}
 make prefix=${TARGETDIR}
 make prefix=${TARGETDIR} install
+cd ..
