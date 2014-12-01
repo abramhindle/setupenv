@@ -10,6 +10,11 @@ if [ -d "${TARGETDIR}" ]; then
 fi
 
 # this is already a binary release
-wget http://www.cmake.org/files/v3.1/cmake-${VERSION}-Linux-i386.tar.gz
-tar xvfz cmake-${VERSION}-Linux-i386.tar.gz
-mv cmake-${VERSION}-Linux-i386 ${TARGETDIR}
+wget http://www.cmake.org/files/v3.1/cmake-${VERSION}.tar.gz
+tar xvfz cmake-${VERSION}.tar.gz
+mv cmake-${VERSION} ${VERSION}
+cd ${VERSION}
+./bootstrap --prefix=${TARGETDIR}
+make
+make install
+cd ..
