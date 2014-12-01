@@ -6,5 +6,5 @@ TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 git clone https://github.com/kpu/kenlm.git ${VERSION}
 cd ${VERSION}
-./bjam -j4 --prefix=${TARGETDIR}
+./bjam -j4 --prefix=${TARGETDIR} --max-kenlm-order=10 link=shared
 cd ..
