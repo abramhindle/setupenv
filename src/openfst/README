@@ -1,0 +1,40 @@
+problems with compiling with c++11 and openfst; from openfst forums
+===================================================================
+
+I am trying to compile a c++11 program that uses openfst but I obtain the
+following error: /usr/include/fst/interval-set.h: In member function 'void
+fst::IntervalSet::Intersect(const fst::IntervalSet&, fst::IntervalSet*)
+const': /usr/include/fst/interval-set.h:221:16: error: parse error in
+template argument list /usr/include/fst/interval-set.h: In member function
+'void fst::IntervalSet::Complement(T, fst::IntervalSet*) const':
+/usr/include/fst/interval-set.h:243:18: error: parse error in template
+argument list /usr/include/fst/interval-set.h:250:16: error: parse error in
+template argument list /usr/include/fst/interval-set.h: In member function
+'bool fst::IntervalSet::Contains(const fst::IntervalSet&) const':
+/usr/include/fst/interval-set.h:351:54: error: expected ')' before 'it1' I
+seems that gcc gets confused with the member variables 'begin' and 'end' in
+'struct Interval', probably because they interfere with the new c++11
+feature Range-based for-loop.  The problem can be easily solved by renaming
+such variables for instance to 'begin_' and 'end_', respectively.  If it
+does not break compatibility with older code or libraries, would you mind
+considering to update your source code?
+
+I have attached an updated interval-set.h. openfst compiles and passes the
+checks, though they seem not to make use of InvervalSet. I hope not to have
+introduced any bugs. I look forward for your opinion.
+
+By the way, you can obtain the error by configuring openfst like this:
+./configure CXXFLAGS=-std=c++0x Thanks
+
+I noticed the same problem. In this specific file, you can fix those
+instances by modifying lines like:
+
+if (it1->end < it2->end) to if ((it1->end) < it2->end)
+
+This avoids the compiler thinking you are using some kind of template
+notation.
+
+I noticed the same problem. In this specific file, you can fix those
+instances by modifying lines like: if (it1->end < it2->end) to if
+((it1->end) < it2->end) This avoids the compiler thinking you are using
+some kind of template notation.
