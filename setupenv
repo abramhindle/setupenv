@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 ]; then
   echo >&2 "missing subdir"
+  exit 1
 else
-  SUBDIR=$1
-  BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"/build/${SUBDIR}
 
-  export PATH=${BASEDIR}/bin:${PATH}
-  export CPATH=${BASEDIR}/include:${CPATH}
-  export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
-  export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
-  export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
-  export INFODIR=${BASEDIR}/share/info:${INFODIR}
+  while [ $# -ge 1 ]; do
+    BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"/build/$1
+
+    export PATH=${BASEDIR}/bin:${PATH}
+    export CPATH=${BASEDIR}/include:${CPATH}
+    export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+    export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
+    export CPPFLAGS="${CPPFLAGS} -isystem${BASEDIR}/include"
+    export INFODIR=${BASEDIR}/share/info:${INFODIR}
+    shift
+  done
+
 fi

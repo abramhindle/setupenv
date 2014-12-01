@@ -11,7 +11,5 @@ for f in src/*; do
       ff=`basename ${ff}`
       echo "0 $f ... $ff"
     done
-  else
-    echo "1 $f ... MISSING"
   fi
 done | sort -k1,1g -k2,2 | awk '{print substr($0,3,length($0))}' | column -t

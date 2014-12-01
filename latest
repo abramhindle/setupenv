@@ -1,26 +1,23 @@
 #!/usr/bin/env bash
 
-if [ $# -ne 1 ]; then
-  echo >&2 "usage: program"
-  exit 1
-fi
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
 
-ls build | grep $1 | \
-  awk -F '-' '{ if (NF>1) { printf("%s\t%s\n", $2, $1) }}' | \
-  sort -k2,2g | \
+# SORT VERSION NUMBERS
+
+${BASEDIR}/installed | sort -k2,2 -k1,1r | \
   awk '{ 
     if (NR==1) { 
       OLDVERSION=$1;
       OLDNAME=$2
+      OLDFULL=$3
     }; 
     if (OLDNAME!=$2) {
-      print OLDNAME, OLDVERSION;
+      print OLDFULL
       OLDVERSION=$1;
       OLDNAME=$2
+      OLDFULL=$3
     }
   }
   END {
-    print $1, $2
-  }' | \
-  awk '{printf("%s-%s\n", $2, $1)}'
-
+    print OLDFULL
+  }'

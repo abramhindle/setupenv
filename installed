@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
+
+ls ${BASEDIR}/build | \
+  awk -F '-' '{ if (NF>1) { printf("%s\t%s\n", substr($0,length($1)+2,length($0)), $1) }}' | \
+  sort -k2,2g | \
+  awk '{printf("%s\t%s\t%s-%s\n", $1, $2, $2, $1)}'
