@@ -8,6 +8,11 @@ TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 mv trunk ${VERSION}
 cd ${VERSION}
+
+if [ "$(uname)" == "Darwin" ]; then
+  touch malloc.h
+fi
+
 make
 
 SOURCEDIR=`realpath ${VERSION}`
