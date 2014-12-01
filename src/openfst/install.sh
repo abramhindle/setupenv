@@ -9,7 +9,9 @@ tar xvfz openfst-${VERSION}.tar.gz
 
 mv openfst-${VERSION} ${VERSION}
 cd ${VERSION}
-./configure LDFLAGS=-Wl,--no-as-needed --prefix=${TARGETDIR}
+# modified this line to compile on mac, check if still works on linux
+#./configure LDFLAGS=-Wl,--no-as-needed --prefix=${TARGETDIR}
+./configure LDFLAGS=-Wl --prefix=${TARGETDIR}
 make
 make install
 cd ..
