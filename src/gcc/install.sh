@@ -22,6 +22,7 @@ cd build || exit 1
 ../configure \
   --prefix=${TARGETDIR} \
   --enable-languages=c,c++ \
+  --enable-multilib \
   --disable-bootstrap \
     && make -j32 && make install || exit 1
 
