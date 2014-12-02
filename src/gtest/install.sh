@@ -16,4 +16,7 @@ cd ${VERSION}
 ./configure --prefix=${TARGETDIR}
 make
 make install
+
+# workaround
+cp -R include ${TARGETDIR}
 cd ..

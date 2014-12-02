@@ -19,7 +19,8 @@ echo >&2 "downloading prerequisites"
 mkdir build || exit 1
 cd build || exit 1
 
-LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH 
+LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
+LIBRARY_PATH=${LIBRARY_PATH%:}
 export LIBRARY_PATH
 
 ../configure \
