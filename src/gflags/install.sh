@@ -17,4 +17,7 @@ mkdir ${VERSION}-build
 cd ${VERSION}-build
 cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
 make install
+
+# we additionally need to copy this dir
+cp -R include ${TARGETDIR}
 cd ..
