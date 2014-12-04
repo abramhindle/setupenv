@@ -31,6 +31,10 @@ else
     if [ -d ${BASEDIR}/share/info ]; then
       export INFODIR=${BASEDIR}/share/info:${INFODIR}
     fi
+
+    if [ -d ${BASEDIR}/share/info ]; then
+      export ACLOCAL_PATH=${BASEDIR}/share/aclocal:${ACLOCAL_PATH}
+    fi
     shift
   done
 fi
