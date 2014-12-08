@@ -38,6 +38,11 @@ else
     if [ -d ${BASEDIR}/share/info ]; then
       export ACLOCAL_PATH=${BASEDIR}/share/aclocal:${ACLOCAL_PATH}
     fi
+    
+    if [ -d ${BASEDIR}/lib/python2.7/site-packages ]; then
+      export PYTHONPATH="${PYTHONPATH}:${BASEDIR}/lib/python2.7/site-packages"
+    fi
+
     shift
   done
 fi
