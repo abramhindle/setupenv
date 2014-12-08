@@ -22,7 +22,7 @@ else
       export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
 
       # darwin needs a different environment variable
-      if [ ${UNAME} == "Darwin" ]; then
+      if [ ${UNAME} = "Darwin" ]; then
         export DYLD_LIBRARY_PATH=${BASEDIR}/lib:${DYLD_LIBRARY_PATH}
       else
         export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}

@@ -17,4 +17,5 @@ mkdir ${VERSION}-build
 cd ${VERSION}-build
 cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
 make install
-cd ..
+cd ${TARGETDIR}/lib
+ln -s libstxxl_debug.a libstxxl.a

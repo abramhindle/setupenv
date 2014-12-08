@@ -15,7 +15,7 @@ mv gflags ${VERSION}
 mkdir ${VERSION}-build
 
 cd ${VERSION}-build
-cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DGFLAGS_NAMESPACE=google
+cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DGFLAGS_NAMESPACE=google -DBUILD_SHARED_LIBS=true
 make install
 
 # we additionally need to copy this dir
