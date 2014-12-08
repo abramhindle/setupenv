@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+UNAME=$(uname)
+
 if [ $# -lt 1 ]; then
   echo >&2 "missing subdir"
   exit 1
@@ -18,13 +20,14 @@ else
 
     if [ -d ${BASEDIR}/lib ]; then
       export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
-      export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
-      export LIBRARY_PATH=${BASEDIR}/lib:${LIBRARY_PATH}
-    fi
 
-    if [ -d ${BASEDIR}/lib ]; then
-      export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
-      export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+      # darwin needs a different environment variable
+      if [ ${UNAME} == "Darwin" ]; then
+        export DYLD_LIBRARY_PATH=${BASEDIR}/lib:${DYLD_LIBRARY_PATH}
+      else
+        export LD_LIBRARY_PATH=${BASEDIR}/lib:${LD_LIBRARY_PATH}
+      fi
+
       export LIBRARY_PATH=${BASEDIR}/lib:${LIBRARY_PATH}
     fi
 
@@ -35,6 +38,11 @@ else
     if [ -d ${BASEDIR}/share/info ]; then
       export ACLOCAL_PATH=${BASEDIR}/share/aclocal:${ACLOCAL_PATH}
     fi
+    
+    if [ -d ${BASEDIR}/lib/python2.7/site-packages ]; then
+      export PYTHONPATH="${PYTHONPATH}:${BASEDIR}/lib/python2.7/site-packages"
+    fi
+
     shift
   done
 fi

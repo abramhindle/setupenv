@@ -1,0 +1,9 @@
+*.gz
+*.gz.*
+*.xz
+*.xz.*
+*.bz2
+*.bz2.*
+*.zip
+.history-*
+build/*

@@ -15,6 +15,9 @@ mv gflags ${VERSION}
 mkdir ${VERSION}-build
 
 cd ${VERSION}-build
-cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
+cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DGFLAGS_NAMESPACE=google
 make install
+
+# we additionally need to copy this dir
+cp -R include ${TARGETDIR}
 cd ..
