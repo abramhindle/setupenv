@@ -37,9 +37,9 @@
 #include <fst/config.h>
 #include <fst/types.h>
 #include <fst/lock.h>
-#include <fst/icu.h>
 #include <glog/logging.h>
 #include <gflags/gflags.h>
+#include <fst/icu.h>
 
 using std::cin;
 using std::cout;
