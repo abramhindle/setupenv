@@ -20,6 +20,8 @@ export PY_PREFIX=${TARGETDIR}
   --prefix=${TARGETDIR} \
   --disable-tests \
   --without-qt4 \
+  --with-cpp \
+  --with-python \
   --without-php \
   --without-lua \
   --without-csharp \
