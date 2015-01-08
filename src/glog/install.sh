@@ -14,6 +14,6 @@ wget https://google-glog.googlecode.com/files/glog-${VERSION}.tar.gz
 tar xf glog-${VERSION}.tar.gz
 mv glog-${VERSION} ${VERSION}
 cd ${VERSION}
-./configure --prefix=${TARGETDIR}
+./configure --prefix=${TARGETDIR} --enable-namespace=google
 make
 make install
