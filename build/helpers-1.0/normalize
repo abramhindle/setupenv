@@ -22,7 +22,7 @@ for f in "$@"; do
 
         if (old_len != length($0)) {
             printf("expanded tabs in %s:%d\n",FN,NR) > "/dev/stderr";
-	}
+        }
 
         if (empty_lines<2) {
             print $0;
