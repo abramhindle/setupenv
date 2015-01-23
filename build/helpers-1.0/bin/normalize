@@ -11,33 +11,44 @@ fi
 
 for f in "$@"; do
 
-    cat $f | gawk -vFN=${f} -vTAB_REPLACEMENT=${TAB_REPLACEMENT}'{
+    cat $f | gawk -vFN=${f} -vTAB_REPLACEMENT=${TAB_REPLACEMENT}'
+  BEGIN{
+    changes = 0;
+  }
 
-        old_len = length($0);
-        sub(/[ \t]+$/, "");
+  END {
+    printf("did perform %d changes\n", changes) > "/dev/stderr";
+  }
 
-        if (old_len != length($0)) {
-            printf("removing trailing whitespaces from %s:%d\n",FN,NR) > "/dev/stderr";
-        }
+  {
+    old_len = length($0);
+    sub(/[ \t]+$/, "");
 
-        old_len = length($0);
-        sub(/[\t]/, TAB_REPLACEMENT);
+    if (old_len != length($0)) {
+      printf("removing trailing whitespaces from %s:%d\n",FN,NR) > "/dev/stderr";
+      changes++;
+    }
 
-        if (old_len != length($0)) {
-            printf("expanded tabs in %s:%d\n",FN,NR) > "/dev/stderr";
-        }
+    old_len = length($0);
+    sub(/[\t]/, TAB_REPLACEMENT);
 
-        if (empty_lines<2) {
-            print $0;
-        } else {
-            printf("skipping emtpy line %s:%d\n",FN,NR) > "/dev/stderr";
-        }
+    if (old_len != length($0)) {
+      printf("expanded tabs in %s:%d\n",FN,NR) > "/dev/stderr";
+      changes++;
+    }
 
-        if (length($0)==0){
-            empty_lines+=1;
-        } else {
-            empty_lines=0;
-        }
-    }'
+    if (empty_lines<2) {
+      print $0;
+    } else {
+      printf("skipping emtpy line %s:%d\n",FN,NR) > "/dev/stderr";
+      changes++;
+    }
+
+    if (length($0)==0){
+      empty_lines+=1;
+    } else {
+      empty_lines=0;
+    }
+  }'
 
 done
