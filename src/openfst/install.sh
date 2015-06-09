@@ -4,14 +4,24 @@ WHAT=openfst
 VERSION=1.4.1
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
+ORIGDIR=${PWD}
+TEMPDIR=`mktemp -d`
+cd ${TEMPDIR}
+
 wget http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz
 tar xvfz openfst-${VERSION}.tar.gz
 
 mv openfst-${VERSION} ${VERSION}
 cd ${VERSION}
-# modified this line to compile on mac, check if still works on linux
-#./configure LDFLAGS=-Wl,--no-as-needed --prefix=${TARGETDIR}
-./configure LDFLAGS=-Wl --prefix=${TARGETDIR}
-make
-make install
-cd ..
+
+if [ "`uname -o`" == "GNU/Linux" ]; then
+  echo >&2 "special treatments for linux ..."
+  ./configure LDFLAGS=-Wl,--no-as-needed --prefix=${TARGETDIR}
+else
+  ./configure LDFLAGS=-Wl --prefix=${TARGETDIR}
+fi
+
+make -j3
+make -j3 install
+cd ${ORIGDIR}
+cp -f compat.h ${TARGETDIR}/include/fst

@@ -5,9 +5,14 @@ VERSION=4.9.2
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 UNAME=$(uname)
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
+THREADS=2
+
+if [ -d "${TARGETDIR}" ]; then
+  echo >&2 "${TARGETDIR} already exists"
+  exit 1
+fi
 
 echo >&2 "building in ${BUILDDIR}"
-
 cd ${BUILDDIR}
 wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-${VERSION}/gcc-${VERSION}.tar.gz || exit 1
 tar xfz gcc-${VERSION}.tar.gz || exit 1
@@ -24,12 +29,24 @@ LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LIBRARY_PATH
 LIBRARY_PATH=${LIBRARY_PATH%:}
 export LIBRARY_PATH
 
-../configure \
-  --prefix=${TARGETDIR} \
-  --enable-languages=c,c++ \
-  --enable-multilib \
-  --disable-bootstrap \
-  --disable-multilib \
-    && make -j32 && make install || exit 1
+if [ "`uname -o`" == "GNU/Linux" ]; then
+  echo >&2 "special treatments for linux ..."
+  ../configure \
+    LDFLAGS=-Wl,--no-as-needed \
+    --prefix=${TARGETDIR} \
+    --enable-languages=c,c++ \
+    --enable-multilib \
+    --disable-bootstrap \
+    --disable-multilib \
+    && make -j${THREADS} && make install || exit 1
+else
+  ../configure \
+    --prefix=${TARGETDIR} \
+    --enable-languages=c,c++ \
+    --enable-multilib \
+    --disable-bootstrap \
+    --disable-multilib \
+    && make -j${THREADS} && make install || exit 1
+fi
 
 rm -rf ${BUILDDIR}

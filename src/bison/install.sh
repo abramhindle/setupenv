@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=bison
-VERSION=3.0
+VERSION=3.0.4
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,9 +9,9 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.gz
+wget http://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.xz
 
-tar xvfz bison-${VERSION}.tar.gz
+tar xvf bison-${VERSION}.tar.xz
 mv bison-${VERSION} ${VERSION}
 cd ${VERSION}
 

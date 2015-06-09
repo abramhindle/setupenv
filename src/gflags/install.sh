@@ -9,8 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-git clone https://code.google.com/p/gflags/
-mv gflags ${VERSION}
+git clone https://code.google.com/p/gflags/ ${VERSION}
 
 mkdir ${VERSION}-build
 
