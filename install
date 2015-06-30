@@ -2,6 +2,14 @@
 
 #sudo apt-get install libbz2-dev
 
+if which realpath >/dev/null; then
+    echo realpath exists
+else
+    echo realpath not exists
+    echo Installing realpath
+    cd src/realpath ; ./install.sh ; cd ../.. ; export PATH=$PATH:`pwd`/build/realpath-1.0/bin/
+fi
+
 #cd src/realpath ; ./install.sh ; cd ../..
 #cd src/cmake ; ./install.sh ; cd ../..
 #cd src/m4 ; ./install.sh ; cd ../..

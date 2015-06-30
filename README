@@ -1,7 +1,7 @@
 library of software tools
 
 current need the following packages:
-sudo apt-get install libssl-dev libbz2-dev libz-dev libc6-i386
+sudo apt-get install make wget libssl-dev libbz2-dev libz-dev libc6-i386
 
 not working on mac:
 * sparsehash
