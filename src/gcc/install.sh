@@ -5,7 +5,7 @@ VERSION=4.9.2
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 UNAME=$(uname)
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
-THREADS=2
+THREADS=1
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"
@@ -14,7 +14,7 @@ fi
 
 echo >&2 "building in ${BUILDDIR}"
 cd ${BUILDDIR}
-wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-${VERSION}/gcc-${VERSION}.tar.gz || exit 1
+wget -N ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-${VERSION}/gcc-${VERSION}.tar.gz || exit 1
 tar xfz gcc-${VERSION}.tar.gz || exit 1
 mv gcc-${VERSION} ${VERSION} || exit 1
 cd ${VERSION} || exit1

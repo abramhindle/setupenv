@@ -17,7 +17,7 @@ mkdir -p ${TARGETDIR}
 echo >&2 "building in ${BUILDDIR}"
 cd ${BUILDDIR}
 
-wget http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.gz
+wget -N http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.gz
 tar xvfz boost_1_58_0.tar.gz
 mv boost_1_58_0 ${VERSION}
 cd ${VERSION}

@@ -10,10 +10,12 @@ else
     cd src/realpath ; ./install.sh ; cd ../.. ; export PATH=$PATH:`pwd`/build/realpath-1.0/bin/
 fi
 
+cd src/gcc; ./install.sh ; cd ../.. ;export PATH=$PATH:`pwd`/build/gcc-4.9.2/bin/
+cd src/bison ; ./install.sh ; cd ../..
+#cd src/autoconf; ./install.sh ; cd ../..
 #cd src/realpath ; ./install.sh ; cd ../..
 #cd src/cmake ; ./install.sh ; cd ../..
 #cd src/m4 ; ./install.sh ; cd ../..
-#cd src/bison ; ./install.sh ; cd ../..
 #cd src/gawk ; ./install.sh ; cd ../..
 #cd src/boost ; ./install.sh ; cd ../..
 #cd src/thrift ; ./install.sh ; cd ../..

@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget https://google-glog.googlecode.com/files/glog-${VERSION}.tar.gz
+wget -N https://google-glog.googlecode.com/files/glog-${VERSION}.tar.gz
 
 tar xf glog-${VERSION}.tar.gz
 mv glog-${VERSION} ${VERSION}

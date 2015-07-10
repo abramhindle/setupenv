@@ -9,6 +9,6 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://llvm.org/releases/3.5.0/clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz
+wget -N http://llvm.org/releases/3.5.0/clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz
 tar xvf clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz
 mv clang+llvm-3.5.0-x86_64-linux-gnu ${TARGETDIR}

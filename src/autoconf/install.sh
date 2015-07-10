@@ -4,7 +4,7 @@ WHAT=autoconf
 VERSION=2.69
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget http://ftp.gnu.org/gnu/autoconf/${WHAT}-${VERSION}.tar.xz || exit 1
+wget -N http://ftp.gnu.org/gnu/autoconf/${WHAT}-${VERSION}.tar.xz || exit 1
 
 tar xvf ${WHAT}-${VERSION}.tar.xz || exit 1
 mv ${WHAT}-${VERSION} ${VERSION} || exit 1

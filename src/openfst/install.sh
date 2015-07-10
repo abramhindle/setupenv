@@ -8,7 +8,7 @@ ORIGDIR=${PWD}
 TEMPDIR=`mktemp -d`
 cd ${TEMPDIR}
 
-wget http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz
+wget -N http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz
 tar xvfz openfst-${VERSION}.tar.gz
 
 mv openfst-${VERSION} ${VERSION}

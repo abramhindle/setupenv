@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://garr.dl.sourceforge.net/project/judy/judy/Judy-1.0.5/Judy-1.0.5.tar.gz
+wget -N http://garr.dl.sourceforge.net/project/judy/judy/Judy-1.0.5/Judy-1.0.5.tar.gz
 tar xvfz Judy-${VERSION}.tar.gz
 
 mv judy-${VERSION} ${VERSION}

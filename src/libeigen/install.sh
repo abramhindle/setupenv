@@ -12,7 +12,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://bitbucket.org/eigen/eigen/get/${VERSION}.tar.gz
+wget -N http://bitbucket.org/eigen/eigen/get/${VERSION}.tar.gz
 
 tar xvfz ${VERSION}.tar.gz
 mv ${SUBDIR} ${VERSION}
