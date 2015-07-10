@@ -2,16 +2,43 @@
 
 #sudo apt-get install libbz2-dev
 
-if which realpath >/dev/null; then
-    echo realpath exists
-else
-    echo realpath not exists
-    echo Installing realpath
-    cd src/realpath ; ./install.sh ; cd ../.. ; export PATH=$PATH:`pwd`/build/realpath-1.0/bin/
-fi
+cd src/realpath; ./install.sh ; cd ../..; source ../setupenv realpath
+cd src/gcc; ./install.sh ; cd ../..; source ../setupenv gcc
+cd src/m4; ./install.sh ; cd ../..; source ../setupenv m4
+cd src/bison; ./install.sh ; cd ../..; source ../setupenv bison
+cd src/autoconf; ./install.sh ; cd ../..; source ../setupenv autoconf
+cd src/boost; ./install.sh ; cd ../..; source ../setupenv boost
+cd src/clang; ./install.sh ; cd ../..; source ../setupenv clang
+cd src/cmake ; ./install.sh ; cd ../..; source ../setupenv cmake
+cd src/libcurl; ./install.sh ; cd ../..; source ../setupenv libcurl
+cd src/libeigen; ./install.sh ; cd ../..; source ../setupenv libeigen
+cd src/libconfig; ./install.sh ; cd ../..; source ../setupenv libconfig
+cd src/libevent; ./install.sh ; cd ../..; source ../setupenv libevent
+cd src/ncurses; ./install.sh ; cd ../..; source ../setupenv ncurses
+cd src/gawk; ./install.sh ; cd ../..; source ../setupenv gawk
+cd src/gflags; ./install.sh ; cd ../..; source ../setupenv gflags
+cd src/glog; ./install.sh ; cd ../..; source ../setupenv glog
+cd src/parallel; ./install.sh ; cd ../..; source ../setupenv parallel
+cd src/pv; ./install.sh ; cd ../..; source ../setupenv pv
+cd src/sparsehash; ./install.sh ; cd ../..; source ../setupenv sparsehash
+cd src/stxxl; ./install.sh ; cd ../..; source ../setupenv stxxl
+cd src/tmux; ./install.sh ; cd ../..; source ../setupenv tmux
+cd src/word2vec_convert; ./install.sh ; cd ../..; source ../setupenv word2vec_convert
+cd src/cpplint.py; ./install.sh ; cd ../..; source ../setupenv cpplint.py
+cd src/word2vec; ./install.sh ; cd ../..; source ../setupenv word2vec
+cd src/kenlm; ./install.sh ; cd ../..; source ../setupenv kenlm
 
-cd src/gcc; ./install.sh ; cd ../.. ;export PATH=$PATH:`pwd`/build/gcc-4.9.2/bin/
-cd src/bison ; ./install.sh ; cd ../..
+
+#if which realpath >/dev/null; then
+#    echo realpath exists
+#else
+#    echo realpath not exists
+#    echo Installing realpath
+#    cd src/realpath ; ./install.sh ; cd ../.. ; export PATH=$PATH:`pwd`/build/realpath-1.0/bin/
+#fi
+
+#cd src/gcc; ./install.sh ; cd ../.. ;export PATH=$PATH:`pwd`/build/gcc-4.9.2/bin/
+#cd src/bison ; ./install.sh ; cd ../..
 #cd src/autoconf; ./install.sh ; cd ../..
 #cd src/realpath ; ./install.sh ; cd ../..
 #cd src/cmake ; ./install.sh ; cd ../..
