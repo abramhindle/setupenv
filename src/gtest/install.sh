@@ -9,9 +9,9 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://googletest.googlecode.com/files/gtest-${VERSION}.zip
-unzip gtest-${VERSION}.zip
-mv gtest-${VERSION} ${VERSION}
+wget http://googletest.googlecode.com/files/${WHAT}-${VERSION}.zip
+unzip ${WHAT}-${VERSION}.zip
+mv ${WHAT}-${VERSION} ${VERSION}
 cd ${VERSION}
 ./configure --prefix=${TARGETDIR}
 make
