@@ -27,6 +27,7 @@ cd src/word2vec_convert; ./install.sh ; cd ../..; source ./setupenv word2vec_con
 cd src/cpplint.py; ./install.sh ; cd ../..; source ./setupenv cpplint.py-1.0
 cd src/word2vec; ./install.sh ; cd ../..; source ./setupenv word2vec-r`svn info http://word2vec.googlecode.com/svn/trunk/ |grep Revision: |cut -c11-`
 cd src/kenlm; ./install.sh ; cd ../..; source ./setupenv kenlm-`date +%Y-%m-%d`
+cd src/cbc; ./install.sh ; cd ../..; source ./setupenv coin-Cbc-2.8
 
 
 #if which realpath >/dev/null; then
