@@ -1,6 +1,8 @@
-library of software tools
+# setupenv - what is it?
+setupenv is a set of scripts to download and install software in your home directory.
 
-currently needs the following preinstalled libraries (not installed using
+# requirements
+currently, it needs the following preinstalled libraries (not installed using
 scripts).
 
 ```
@@ -14,8 +16,7 @@ you have to compile and build them using the scripts in this repo).
 sudo apt-get install libtool autoconf autotools-dev automake autogen
 ```
 
-not working on mac:
-* sparsehash
-
-ideas to solve:
-* add latest gcc and compile everything with that gcc
+# ideas/problems
+* `sparsehash` not working on mac
+* add latest `gcc` and compile everything with that gcc
+* convert all scripts to homebrew linux scripts
