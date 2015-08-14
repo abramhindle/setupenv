@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://freefr.dl.sourceforge.net/project/stxxl/stxxl/${VERSION}/${WHAT}-${VERSION}.tar.gz
+wget -N http://freefr.dl.sourceforge.net/project/stxxl/stxxl/${VERSION}/${WHAT}-${VERSION}.tar.gz
 tar xvfz ${WHAT}-${VERSION}.tar.gz
 
 mv ${WHAT}-${VERSION} ${VERSION}

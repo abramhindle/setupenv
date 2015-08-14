@@ -10,7 +10,7 @@ if [ -d "${TARGETDIR}" ]; then
 fi
 
 # this is already a binary release
-wget http://www.cmake.org/files/v3.1/cmake-${VERSION}.tar.gz
+wget -N http://www.cmake.org/files/v3.1/cmake-${VERSION}.tar.gz
 tar xvfz cmake-${VERSION}.tar.gz
 mv cmake-${VERSION} ${VERSION}
 cd ${VERSION}

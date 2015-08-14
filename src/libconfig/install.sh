@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://www.hyperrealm.com/libconfig/libconfig-${VERSION}.tar.gz
+wget -N http://www.hyperrealm.com/libconfig/libconfig-${VERSION}.tar.gz
 tar xvfz libconfig-${VERSION}.tar.gz
 
 mv libconfig-${VERSION} ${VERSION}

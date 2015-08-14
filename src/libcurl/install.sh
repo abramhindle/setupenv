@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://curl.haxx.se/download/curl-${VERSION}.tar.gz
+wget -N http://curl.haxx.se/download/curl-${VERSION}.tar.gz
 
 tar xvfz curl-${VERSION}.tar.gz
 

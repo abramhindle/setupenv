@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://ftp.gnu.org/gnu/gawk/gawk-${VERSION}.tar.gz
+wget -N http://ftp.gnu.org/gnu/gawk/gawk-${VERSION}.tar.gz
 tar xvfz gawk-${VERSION}.tar.gz
 mv gawk-${VERSION} ${VERSION}
 cd ${VERSION}

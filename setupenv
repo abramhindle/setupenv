@@ -31,6 +31,19 @@ else
       export LIBRARY_PATH=${BASEDIR}/lib:${LIBRARY_PATH}
     fi
 
+    if [ -d ${BASEDIR}/lib64 ]; then
+      export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib64"
+
+      # darwin needs a different environment variable
+      if [ ${UNAME} = "Darwin" ]; then
+        export DYLD_LIBRARY_PATH=${BASEDIR}/lib64:${DYLD_LIBRARY_PATH}
+      else
+        export LD_LIBRARY_PATH=${BASEDIR}/lib64:${LD_LIBRARY_PATH}
+      fi
+
+      export LIBRARY_PATH=${BASEDIR}/lib64:${LIBRARY_PATH}
+    fi
+
     if [ -d ${BASEDIR}/share/man ]; then
       export MANPATH=${BASEDIR}/share/man:${MANPATH}
     fi

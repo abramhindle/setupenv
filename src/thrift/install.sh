@@ -9,9 +9,9 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-#wget http://ftp.fau.de/apache/thrift/${VERSION}/${WHAT}-${VERSION}.tar.gz
-#tar xvfz ${WHAT}-${VERSION}.tar.gz
-#mv ${WHAT}-${VERSION} ${VERSION}
+wget -N http://ftp.fau.de/apache/thrift/${VERSION}/${WHAT}-${VERSION}.tar.gz
+tar xvfz ${WHAT}-${VERSION}.tar.gz
+mv ${WHAT}-${VERSION} ${VERSION}
 cd ${VERSION}
 
 #CXXFLAGS="-std=c++11 -Wreserved-user-defined-literal"

@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
 
-WHAT=glog
-VERSION=0.3.3
+WHAT=mgiza
+VERSION=`date +%Y-%m-%d`
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
+
+echo ${TARGETDIR}
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"
   exit 1
 fi
 
+mkdir -p ${TARGETDIR}
+
 cd ${BUILDDIR}
 
-wget -N https://google-glog.googlecode.com/files/glog-${VERSION}.tar.gz
+git clone https://github.com/moses-smt/mgiza.git
 
-tar xf glog-${VERSION}.tar.gz
-mv glog-${VERSION} ${VERSION}
-cd ${VERSION}
-./configure --prefix=${TARGETDIR} --enable-namespace=google
+cd mgiza/mgizapp
+cmake . -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
 make
 make install

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=git
-VERSION=2.2.0
+VERSION=2.4.5
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.gz
+wget -N https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.gz
 
 tar xvfz git-${VERSION}.tar.gz
 mv git-${VERSION} ${VERSION}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-WHAT=libjudy
-VERSION=1.0.5
+WHAT=simhash
+VERSION=`date +%Y-%m-%d`
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,12 +9,10 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget -N http://garr.dl.sourceforge.net/project/judy/judy/Judy-1.0.5/Judy-1.0.5.tar.gz
-tar xvfz Judy-${VERSION}.tar.gz
-
-mv judy-${VERSION} ${VERSION}
+git clone https://github.com/seomoz/simhash-cpp ${VERSION}
 cd ${VERSION}
 
+return 1
 ./configure \
   --prefix=${TARGETDIR}
 

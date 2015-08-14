@@ -4,7 +4,7 @@ WHAT=m4
 VERSION=1.4.17
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget http://ftp.gnu.org/gnu/m4/m4-${VERSION}.tar.gz
+wget -N http://ftp.gnu.org/gnu/m4/m4-${VERSION}.tar.gz
 
 tar xvfz m4-${VERSION}.tar.gz
 mv m4-${VERSION} src

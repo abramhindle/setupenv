@@ -4,7 +4,7 @@ WHAT=ncurses
 VERSION=5.9
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-${VERSION}.tar.gz
+wget -N http://ftp.gnu.org/pub/gnu/ncurses/ncurses-${VERSION}.tar.gz
 
 tar xvfz ncurses-${VERSION}.tar.gz
 mv ncurses-${VERSION} ${VERSION}

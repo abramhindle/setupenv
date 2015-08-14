@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://skylink.dl.sourceforge.net/project/cpplint/C%2B%2B%20Lint%200.x%20releases/cpplint-0.1/cpplint-0.1.tar.gz
+wget -N http://skylink.dl.sourceforge.net/project/cpplint/C%2B%2B%20Lint%200.x%20releases/cpplint-0.1/cpplint-0.1.tar.gz
 
 tar xvfz ${WHAT}-${VERSION}.tar.gz
 mv ${WHAT}-${VERSION} ${VERSION}
