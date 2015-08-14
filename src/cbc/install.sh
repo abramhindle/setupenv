@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WHAT=coin-Cbc
+WHAT=coin-cbc
 VERSION=2.8
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
@@ -13,4 +13,3 @@ make
 make test
 make install
 cd ../..
-
