@@ -10,6 +10,6 @@ if [ -d "${TARGETDIR}" ]; then
 fi
 
 mkdir -p ${TARGETDIR}/bin
-wget http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
+wget -N http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
 chmod oug+x cpplint.py
 mv cpplint.py ${TARGETDIR}/bin/cpplint.py

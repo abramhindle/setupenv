@@ -4,7 +4,7 @@ WHAT=pv
 VERSION=1.5.7
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget http://www.ivarch.com/programs/sources/pv-${VERSION}.tar.bz2 || exit 1
+wget -N http://www.ivarch.com/programs/sources/pv-${VERSION}.tar.bz2 || exit 1
 
 tar xvf pv-${VERSION}.tar.bz2 || exit 1
 mv pv-${VERSION} ${VERSION} || exit 1

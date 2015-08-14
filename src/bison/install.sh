@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget http://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.xz
+wget -N http://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.xz
 
 tar xvf bison-${VERSION}.tar.xz
 mv bison-${VERSION} ${VERSION}
@@ -20,4 +20,3 @@ make -j4
 make install
 
 cd ..
-rm ${TARGETDIR}/share/info/dir

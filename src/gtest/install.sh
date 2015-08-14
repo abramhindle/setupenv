@@ -14,7 +14,7 @@ fi
 echo >&2 "building in ${BUILDDIR}"
 cd ${BUILDDIR}
 
-wget http://googletest.googlecode.com/files/gtest-${VERSION}.zip
+wget -N http://googletest.googlecode.com/files/gtest-${VERSION}.zip
 unzip gtest-${VERSION}.zip
 mv gtest-${VERSION} ${VERSION}
 cd ${VERSION}

@@ -11,7 +11,7 @@ fi
 
 mkdir -p ${TARGETDIR}
 
-wget https://sparsehash.googlecode.com/files/${WHAT}-${VERSION}.tar.gz
+wget -N https://sparsehash.googlecode.com/files/${WHAT}-${VERSION}.tar.gz
 tar xvfz ${WHAT}-${VERSION}.tar.gz
 mv ${WHAT}-${VERSION} ${VERSION}
 
