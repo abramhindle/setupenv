@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-BASEDIR="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
-egrep "^`hostname | tr '[:upper:]' '[:lower:]'`	" ${BASEDIR}/hostgroup.map | cut -f2
