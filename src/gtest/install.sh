@@ -11,10 +11,12 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
+
 echo >&2 "building in ${BUILDDIR}"
 cd ${BUILDDIR}
 
 wget -N http://googletest.googlecode.com/files/${WHAT}-${VERSION}.zip
+
 unzip ${WHAT}-${VERSION}.zip
 mv ${WHAT}-${VERSION} ${VERSION}
 cd ${VERSION}

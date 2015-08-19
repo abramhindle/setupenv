@@ -3,6 +3,7 @@
 WHAT=boost
 VERSION=1.58.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 THREADS=2

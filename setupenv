@@ -60,6 +60,10 @@ else
       export PYTHONPATH="${PYTHONPATH}:${BASEDIR}/lib/python2.7/site-packages"
     fi
 
+    if [ -d ${BASEDIR}/lib/python2.6/site-packages ]; then
+      export PYTHONPATH="${PYTHONPATH}:${BASEDIR}/lib/python2.6/site-packages"
+    fi
+
     shift
   done
 fi

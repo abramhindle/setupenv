@@ -3,10 +3,18 @@
 WHAT=openfst
 VERSION=1.5.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
+
+if [ -d "${TARGETDIR}" ]; then
+  echo >&2 "${TARGETDIR} already exists"
+  exit 1
+fi
+
+cp compat.h ${BUILDDIR}
+
+cd ${BUILDDIR}
 
 ORIGDIR=${PWD}
-TEMPDIR=`mktemp -d`
-cd ${TEMPDIR}
 
 wget -N http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz
 tar xvfz openfst-${VERSION}.tar.gz
@@ -25,3 +33,4 @@ make -j3
 make -j3 install
 cd ${ORIGDIR}
 cp -f compat.h ${TARGETDIR}/include/fst
+>>>>>>> c65dbc23008e2e304314b338efdbdb80c8c574ad

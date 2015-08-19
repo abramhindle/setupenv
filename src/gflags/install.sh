@@ -3,6 +3,7 @@
 WHAT=gflags
 VERSION=`date +%Y-%m-%d`
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
+BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"
