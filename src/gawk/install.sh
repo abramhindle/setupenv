@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=gawk
-VERSION=4.1.1
+VERSION=4.1.3
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then

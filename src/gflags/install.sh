@@ -10,12 +10,13 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-git clone https://code.google.com/p/gflags/ ${VERSION}
+git clone https://github.com/gflags/gflags.git ${VERSION}
 
-mkdir ${VERSION}-build
+mkdir -p ${VERSION}/build
+cd ${VERSION}/build
 
-cd ${VERSION}-build
-cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DGFLAGS_NAMESPACE=google -DBUILD_SHARED_LIBS=true
+cmake .. -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DGFLAGS_NAMESPACE=google -DBUILD_SHARED_LIBS=true
+
 make install
 
 # we additionally need to copy this dir

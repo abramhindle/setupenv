@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=libconfig
-VERSION=1.4.9
+VERSION=1.5
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
