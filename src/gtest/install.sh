@@ -1,29 +1,32 @@
 #!/usr/bin/env bash
 
 WHAT=gtest
-VERSION=1.7.0
+VERSION=`date +%Y-%m-%d`
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
-THREADS=2
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"
   exit 1
 fi
 
+git clone https://github.com/google/googletest.git ${VERSION}
 
-echo >&2 "building in ${BUILDDIR}"
-cd ${BUILDDIR}
+mkdir -p ${VERSION}/googletest/build
+cd ${VERSION}/googletest/build
 
-wget -N http://googletest.googlecode.com/files/${WHAT}-${VERSION}.zip
-
-unzip ${WHAT}-${VERSION}.zip
-mv ${WHAT}-${VERSION} ${VERSION}
-cd ${VERSION}
-./configure --prefix=${TARGETDIR}
+cmake .. -DBUILD_SHARED_LIBS=true
 make
-make install
 
-# workaround
-cp -R include ${TARGETDIR}
-cd ..
+mkdir -p ${TARGETDIR}/lib/
+cp *.so ${TARGETDIR}/lib
+cp -R ../include ${TARGETDIR}
+
+cd ../../
+mkdir -p googlemock/build
+cd googlemock/build
+
+cmake .. -DBUILD_SHARED_LIBS=true
+make
+cp *.so ${TARGETDIR}/lib
+cp -R ../include ${TARGETDIR}
