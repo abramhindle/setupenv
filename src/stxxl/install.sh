@@ -15,7 +15,8 @@ tar xvfz ${WHAT}-${VERSION}.tar.gz
 mv ${WHAT}-${VERSION} ${VERSION}
 mkdir ${VERSION}-build
 cd ${VERSION}-build
-cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR}
+cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=ON
+
 make install
 cd ${TARGETDIR}/lib
 ln -s libstxxl_debug.a libstxxl.a

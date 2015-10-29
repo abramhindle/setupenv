@@ -7,7 +7,7 @@ currently, it needs the following preinstalled libraries (not installed using
 scripts).
 
 ```
-sudo apt-get install libssl-dev libbz2-dev libz-dev libc6-i386
+sudo apt-get install libssl-dev libbz2-dev libz-dev libc6-i386 make g++ python-dev
 ```
 
 it is also much easier to proceed if you have this libs installed (otherwise

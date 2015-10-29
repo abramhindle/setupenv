@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=pv
-VERSION=1.5.7
+VERSION=1.6.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 wget -N http://www.ivarch.com/programs/sources/pv-${VERSION}.tar.bz2 || exit 1

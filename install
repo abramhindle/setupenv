@@ -16,13 +16,14 @@ cd src/libconfig; ./install.sh ; cd ../..; source ./setupenv libconfig-1.4.9
 cd src/libevent; ./install.sh ; cd ../..; source ./setupenv libevent-2.0.22-stable
 cd src/ncurses; ./install.sh ; cd ../..; source ./setupenv ncurses-5.9
 cd src/gawk; ./install.sh ; cd ../..; source ./setupenv gawk-4.1.1
-cd src/gflags; ./install.sh ; cd ../..; source ./setupenv gflags-`date +%Y-%m-%d`
-cd src/glog; ./install.sh ; cd ../..; source ./setupenv glog-0.3.3
 cd src/parallel; ./install.sh ; cd ../..; source ./setupenv parallel-20150122
 cd src/pv; ./install.sh ; cd ../..; source ./setupenv pv-1.5.7
+cd src/tmux; ./install.sh ; cd ../..; source ./setupenv tmux-1.9a
+
+cd src/gflags; ./install.sh ; cd ../..; source ./setupenv gflags-`date +%Y-%m-%d`
+cd src/glog; ./install.sh ; cd ../..; source ./setupenv glog-0.3.3
 cd src/sparsehash; ./install.sh ; cd ../..; source ./setupenv sparsehash-2.0.2
 cd src/stxxl; ./install.sh ; cd ../..; source ./setupenv stxxl-1.4.1
-cd src/tmux; ./install.sh ; cd ../..; source ./setupenv tmux-1.9a
 cd src/word2vec_convert; ./install.sh ; cd ../..; source ./setupenv word2vec_convert-`date +%Y-%m-%d`
 cd src/cpplint.py; ./install.sh ; cd ../..; source ./setupenv cpplint.py-1.0
 cd src/word2vec; ./install.sh ; cd ../..; source ./setupenv word2vec-r`svn info http://word2vec.googlecode.com/svn/trunk/ |grep Revision: |cut -c11-`

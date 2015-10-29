@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=tmux
-VERSION=1.9a
+VERSION=2.1
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -9,7 +9,7 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget -N http://garr.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-${VERSION}.tar.gz
+wget -N https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
 
 tar xvfz tmux-${VERSION}.tar.gz
 mv tmux-${VERSION} ${VERSION}

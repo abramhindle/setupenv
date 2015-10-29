@@ -10,13 +10,11 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-cd ${BUILDDIR}
+git clone https://github.com/google/glog.git
+cd glog
+git tag -l
+git checkout tags/v${VERSION}
 
-wget -N https://google-glog.googlecode.com/files/glog-${VERSION}.tar.gz
-
-tar xf glog-${VERSION}.tar.gz
-mv glog-${VERSION} ${VERSION}
-cd ${VERSION}
 ./configure --prefix=${TARGETDIR} --enable-namespace=google
 make
 make install

@@ -27,6 +27,11 @@ echo "/* IF YOUR BUILD SYSTEM PASSES -DKENLM_MAX_ORDER, THEN CHANGE THE BUILD SY
 #define KENLM_ORDER_MESSAGE \"If your build system supports changing KENLM_MAX_ORDER, change it there and recompile.  In the KenLM tarball or Moses, use e.g. \`bjam --max-kenlm-order=6 -a'.  Otherwise, edit lm/max_order.hh.\"
 #endif" > lm/max_order.hh
 
-./bjam -j4 --prefix=${TARGETDIR} --max-kenlm-order=10 link=shared
+./bjam -j4 \
+  --prefix=${TARGETDIR} \
+  --includedir=${TARGETDIR}/include \
+  --max-kenlm-order=10 \
+  link=shared
+
 cp -R util/double-conversion ${TARGETDIR}/include/util
 cd ..
