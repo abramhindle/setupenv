@@ -4,6 +4,11 @@ WHAT=tmux
 VERSION=1.9a
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
+if [ -d "${TARGETDIR}" ]; then
+  echo >&2 "${TARGETDIR} already exists"
+  exit 1
+fi
+
 wget -N http://garr.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-${VERSION}.tar.gz
 
 tar xvfz tmux-${VERSION}.tar.gz
