@@ -12,7 +12,7 @@ THREADS=4
 echo >&2 "building in ${BUILDDIR}"
 
 cd ${BUILDDIR}
-#hg clone https://code.google.com/p/vim/ || exit 1
+git clone https://github.com/vim/vim.git
 cd vim || exit 1
 ./configure \
   CFLAGS="-g" \
