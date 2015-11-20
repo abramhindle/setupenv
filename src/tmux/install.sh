@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
 WHAT=tmux
-VERSION=1.9a
+VERSION=2.1
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
-wget -N http://garr.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-${VERSION}.tar.gz
+if [ -d "${TARGETDIR}" ]; then
+  echo >&2 "${TARGETDIR} already exists"
+  exit 1
+fi
+
+wget -N https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
 
 tar xvfz tmux-${VERSION}.tar.gz
 mv tmux-${VERSION} ${VERSION}

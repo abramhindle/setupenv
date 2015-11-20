@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=sparsehash
-VERSION=2.0.2
+VERSION=2.0.3
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
@@ -11,11 +11,11 @@ fi
 
 mkdir -p ${TARGETDIR}
 
-wget -N https://sparsehash.googlecode.com/files/${WHAT}-${VERSION}.tar.gz
-tar xvfz ${WHAT}-${VERSION}.tar.gz
-mv ${WHAT}-${VERSION} ${VERSION}
+git clone https://github.com/sparsehash/sparsehash.git
+cd sparsehash
+git tag -l
+git checkout tags/sparsehash-${VERSION}
 
-cd ${VERSION}
 ./configure --prefix=${TARGETDIR}
 make
 make install

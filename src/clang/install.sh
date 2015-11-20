@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=clang
-VERSION=3.6.2
+VERSION=3.7.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 TARBALLDIR=`pwd`
@@ -55,4 +55,3 @@ cd ..
 make
 make install
 cd ..
-

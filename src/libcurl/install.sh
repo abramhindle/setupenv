@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=libcurl
-VERSION=7.39.0
+VERSION=7.45.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 
 if [ -d "${TARGETDIR}" ]; then
