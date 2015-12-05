@@ -9,14 +9,14 @@ if [ -d "${TARGETDIR}" ]; then
   exit 1
 fi
 
-wget -N http://freefr.dl.sourceforge.net/project/stxxl/stxxl/${VERSION}/${WHAT}-${VERSION}.tar.gz
-tar xvfz ${WHAT}-${VERSION}.tar.gz
+git clone https://github.com/stxxl/stxxl.git
 
-mv ${WHAT}-${VERSION} ${VERSION}
-mkdir ${VERSION}-build
-cd ${VERSION}-build
-cmake ../${VERSION} -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=ON
+cd stxxl
+git tag -l
+git checkout ${VERSION}
 
+mkdir build
+cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=${TARGETDIR} -DBUILD_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release
+make -j4
 make install
-cd ${TARGETDIR}/lib
-ln -s libstxxl_debug.a libstxxl.a
