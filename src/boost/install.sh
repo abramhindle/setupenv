@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 WHAT=boost
-VERSION=1.59.0
+VERSION=1.60.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
-THREADS=2
+THREADS=20
 
 if [ -d "${TARGETDIR}" ]; then
   echo >&2 "${TARGETDIR} already exists"
@@ -18,9 +18,9 @@ mkdir -p ${TARGETDIR}
 echo >&2 "building in ${BUILDDIR}"
 cd ${BUILDDIR}
 
-wget -N http://downloads.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.gz
-tar xvfz boost_1_58_0.tar.gz
-mv boost_1_58_0 ${VERSION}
+wget -N http://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.gz
+tar xvfz boost_1_60_0.tar.gz
+mv boost_1_60_0 ${VERSION}
 cd ${VERSION}
 
 ./bootstrap.sh --prefix=${TARGETDIR}

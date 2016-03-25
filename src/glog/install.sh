@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=glog
-VERSION=0.3.4
+VERSION=0.3.3
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
 
@@ -15,6 +15,6 @@ cd glog
 git tag -l
 git checkout tags/v${VERSION}
 
-./configure --prefix=${TARGETDIR}
+./configure --prefix=${TARGETDIR} --enable-namespace=google
 make
 make install

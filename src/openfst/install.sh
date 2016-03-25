@@ -33,4 +33,3 @@ make -j3
 make -j3 install
 cd ${ORIGDIR}
 cp -f compat.h ${TARGETDIR}/include/fst
->>>>>>> c65dbc23008e2e304314b338efdbdb80c8c574ad

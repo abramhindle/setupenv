@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WHAT=gcc
-VERSION=5.2.0
+VERSION=5.3.0
 TARGETDIR=`realpath ../../build`/${WHAT}-${VERSION}
 UNAME=$(uname)
 BUILDDIR=`mktemp -d /tmp/build-${WHAT}-${VERSION}-XXXXXXXXXX`
