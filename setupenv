@@ -21,10 +21,6 @@ else
     if [ -d ${BASEDIR}/lib ]; then
       export LDFLAGS="${LDFLAGS} -L${BASEDIR}/lib"
 
-      if [ -f ${BASEDIR}/lib/*/__init__.py ]; then
-        export PYTHONPATH="${PYTHONPATH}:${BASEDIR}/lib"
-      fi
-
       # darwin needs a different environment variable
       if [ ${UNAME} = "Darwin" ]; then
         export DYLD_LIBRARY_PATH=${BASEDIR}/lib:${DYLD_LIBRARY_PATH}

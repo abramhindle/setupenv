@@ -13,7 +13,5 @@ git clone https://github.com/google/python-gflags ${VERSION}
 
 cd ${VERSION}
 
-python ./setup.py build
-
-cp -R build ${TARGETDIR}
+python ./setup.py install --prefix=${TARGETDIR}
 cd ..
