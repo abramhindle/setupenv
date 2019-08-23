@@ -20,6 +20,7 @@ fi
 
 #git clone https://github.com/kpu/kenlm.git ${VERSION}
 cd ${VERSION}
+cp -ra ~/kenlm/* .
 echo "/* IF YOUR BUILD SYSTEM PASSES -DKENLM_MAX_ORDER, THEN CHANGE THE BUILD SYSTEM.
 * If not, this is the default maximum order.
 * Having this limit means that State can be
