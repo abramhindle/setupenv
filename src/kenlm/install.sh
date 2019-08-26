@@ -37,6 +37,12 @@ echo "/* IF YOUR BUILD SYSTEM PASSES -DKENLM_MAX_ORDER, THEN CHANGE THE BUILD SY
   --includedir=${TARGETDIR}/include \
   --max-kenlm-order=10 \
   link=static
+./bjam -j32 \
+  --prefix=${TARGETDIR} \
+  --includedir=${TARGETDIR}/include \
+  --max-kenlm-order=10 \
+  link=shared
+
 
 cp -R util/double-conversion ${TARGETDIR}/include/util
 cd ..
