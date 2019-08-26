@@ -11,6 +11,10 @@ if [ -d "${TARGETDIR}" ]; then
 fi
 
 git clone https://github.com/google/googletest.git ${VERSION}
+cd ${VERSION}
+git checkout -b unravel-bespoke-version `git rev-list -n 1 --before="2016-07-30 00:00" master`
+cd ..
+
 
 mkdir -p ${VERSION}/googletest/build
 cd ${VERSION}/googletest/build
